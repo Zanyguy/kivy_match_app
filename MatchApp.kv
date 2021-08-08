@@ -1,0 +1,26 @@
+#:import GameScreen MatchApp
+<myScreenManager>:
+    StartScreen:
+    GameScreen:
+<StartScreen@Screen>:
+    name: 'first'
+    BoxLayout:
+        Button:
+            text: "Start Game"
+            on_release: app.root.current= "Game"
+
+<GameScreen>:
+    name: 'Game'
+	on_enter: app.root.startTime()
+    on_leave: app.root.newboard()
+    Board:
+		id: board
+
+<ResetBtn>:
+    on_release: app.root.current = "first"
+    column: 0
+    row: 1
+    pos: 100, 0
+<shapeTog>:
+    border: [0, 0, 0, 0]
+    size_hint: .1, .1
