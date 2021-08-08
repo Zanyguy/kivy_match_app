@@ -1,13 +1,11 @@
 import random
 import boardMovement
 import boardAnimation
-from ClockCircle import Ball
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.togglebutton import ToggleButton
 from kivy.uix.popup import Popup
-from kivy.core.text import Label as CoreLabel
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.progressbar import ProgressBar
@@ -16,7 +14,6 @@ from kivy.event import EventDispatcher
 from kivy.config import Config
 from kivy.animation import Animation
 from kivy.clock import Clock
-from kivy.graphics import Color, Rectangle
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 Config.set('graphics', 'width', '600')
