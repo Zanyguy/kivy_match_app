@@ -68,19 +68,19 @@ def newShapes(board):
     #drop all shapes to lowest available slot first
     for x in range(1,9): 
         for y in range(1,9):
-            if int(brd[str(x)+','+str(y)].shape)==0:
+            if int(brd[(x,y)].shape)==0:
                 for n in range(y+1, 9):
-                    if not int(brd[str(x)+','+str(n)].shape)==0:
-                        brd[str(x)+','+str(n)].row = y
-                        brd[str(x)+','+str(y)].row = n
-                        brd[str(x)+','+str(y)], brd[str(x)+','+str(n)] = brd[str(x)+','+str(n)], brd[str(x)+','+str(y)]
+                    if not int(brd[(x,n)].shape)==0:
+                        brd[(x,n)].row = y
+                        brd[(x,y)].row = n
+                        brd[(x,y)], brd[(x,n)] = brd[(x,n)], brd[(x,y)]
                         break
                         
     #now fill shapes in from the top down
     for x in range(8,0,-1):
         for y in range(8,0,-1):
-            if not int(brd[str(x)+','+str(y)].shape):
-                C = brd[str(x)+','+str(y)]
+            if not int(brd[(x,y)].shape):
+                C = brd[(x,y)]
                                                       
                 imgs = ['imgs/h1.png','imgs/S2.png','imgs/L3.png','imgs/G4.png',
                         'imgs/T5.png','imgs/W6.png','imgs/Z7.png']
@@ -101,7 +101,7 @@ def newShapes(board):
                              background_down= bimgs[img-1])
 
                 board.add_widget(I)
-                brd[str(x)+','+str(y)] = I
+                brd[(x,y)] = I
 
 
 class Board(FloatLayout):
@@ -141,7 +141,7 @@ class Board(FloatLayout):
                              background_down= bimgs[img-1])
  
                 self.add_widget(I)
-                self.brd[str(x)+','+str(y)] = I
+                self.brd[(x,y)] = I
         R = ResetBtn(text="Reset",
                      size_hint = (.1, .1),
                      pos = (0,0))
