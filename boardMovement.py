@@ -7,7 +7,6 @@ from MatchApp import newShapes as nShapes
 def validMove(origin, partner, board):
     """ Confirms that move is only one vertical or horizontal space away,
         and that it results in a match"""
-    brd = board.brd
     if (partner.row == origin.row-1 or partner.row==origin.row+1
         ) and partner.column == origin.column:
         singleMove(origin, partner, board, test=True)
@@ -30,8 +29,8 @@ def singleMove(origin, partner, board, test=False):
         parameter to prevent screen updating"""
     brd = board.brd
 
-    C = str(partner.column)+','+str(partner.row)
-    S = str(origin.column)+','+str(origin.row)
+    C = (partner.column,partner.row)
+    S = (origin.column,origin.row)
     
     brd[C], brd[S] = brd[S], brd[C]
 
@@ -74,13 +73,13 @@ def getMatches(board, *args):
 #horizontal matches
     for y in range(1,9):
         for x in range(1,9):
-            shape = brd[str(x)+','+str(y)].shape
+            shape = brd[(x,y)].shape
             if shape !=0:
                 match = []
                 i = x
                 while i < (9):
-                    if brd[str(i)+','+str(y)].shape == shape:
-                        match.append(brd[str(i)+','+str(y)])
+                    if brd[(i,y)].shape == shape:
+                        match.append(brd[(i,y)])
                     else:
                         break
                     i += 1
@@ -90,13 +89,13 @@ def getMatches(board, *args):
 # vertical matches
     for x in range(1,9):
         for y in range(1,9):
-            shape = brd[str(x)+','+str(y)].shape
+            shape = brd[(x,y)].shape
             if shape != 0:
                 match = []
                 i = y
                 while i < (9):
-                    if brd[str(x)+','+str(i)].shape == shape:
-                        match.append(brd[str(x)+','+str(i)])
+                    if brd[(x,i)].shape == shape:
+                        match.append(brd[(x,i)])
                     else:
                         break
                     i += 1
@@ -150,7 +149,7 @@ def getPotentialMatches(board, *args):
 #horizontal potential matches
     for y in range(1,9):
         for x in range(1,9):
-            shape = brd[str(x)+','+str(y)].shape
+            shape = brd[(x,y)].shape
             if shape !=0:
                 match = []
                 if checkShapes(brd, x+1, y, shape) and (
@@ -176,7 +175,7 @@ def getPotentialMatches(board, *args):
 # vertical potential matches
     for x in range(1,9):
         for y in range(1,9):
-            shape = brd[str(x)+','+str(y)].shape
+            shape = brd[(x,y)].shape
             if shape !=0:
 
                 if checkShapes(brd, x, y+1, shape) and (
